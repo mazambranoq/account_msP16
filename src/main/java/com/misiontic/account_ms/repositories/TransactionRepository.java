@@ -12,5 +12,7 @@ public interface TransactionRepository extends MongoRepository < Transaction, St
 
     List<Transaction> findByUsernameOrigin(String usernameOrigin);
     List<Transaction> findByUsernameDestiny(String usernameDestiny);
-
+    List<Transaction> findByValueGreaterThan( Integer value );
+    List<Transaction> findByUsernameOriginLike(String usernameOrigin);
+    List<Transaction> findByUsernameOriginLikeOrValueGreaterThan(String username, Integer value);
 }
