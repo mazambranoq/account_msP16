@@ -1,5 +1,6 @@
 package com.misiontic.account_ms.controllers;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -84,8 +84,9 @@ public class TransactionController {
     }
 
     @GetMapping("/transactionsfrom")
-    List<Transaction> getFilteredTransactions(@RequestParam(value = "username") String username, @RequestParam Integer value){
-        return transactionRepository.findByUsernameOriginLikeOrValueGreaterThan(username, value);
+    List<Transaction> getFilteredTransactions(){
+        List <String> usernames = Arrays.asList("manuel", "sergio", "karen");
+        return transactionRepository.findByUsernameOriginIn(usernames);
     }
 
     @GetMapping("/transactionbyid/{id}")
